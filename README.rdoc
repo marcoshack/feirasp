@@ -7,7 +7,22 @@
 == Fontes
 
 * http://www9.prefeitura.sp.gov.br/secretarias/smsp/pesquisa/feiras/plugins/feiras.xml
+
 * http://www9.prefeitura.sp.gov.br/secretarias/smsp/pesquisa/feiras/plugins/local.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<local>
+    <feira>
+        <numero>10014</numero>
+        <bairro>LIBERDADE</bairro>
+        <inicio1>RUA TEIXEIRA LEITE</inicio1>
+        <fim1>RUA TEIXEIRA LEITE, 295</fim1>
+        <inicio2>RUA SÃO PAULO, 364</inicio2>
+        <fim2>RUA SÃO PAULO, 432</fim2>
+    </feira>
+</local>
+
+<numero> - identificação da feira no sistema da prefeitura. O primeiro dígito é a informação do dia da semana que acontece, começando em domingo. 1=domingo,2=segunda,3=terça,4=quarta,5=quinta,6=sexta,7=sábado
 
 == Onde tá?
 
