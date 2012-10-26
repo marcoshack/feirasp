@@ -12,7 +12,8 @@ module FeiraTranslator
       :loc           => to_geo(input),
       :metragem      => input['metragem'].to_i,
       :barracas      => input['feirantes'].to_i,
-      :dia_da_semana => to_weekday(input)
+      :dia_da_semana => to_weekday(input),
+      :slug          => to_slug(input)
     }
     
     Feira.create(translated)
@@ -24,6 +25,10 @@ module FeiraTranslator
   
   def to_weekday(input)
     (input['numero'].to_s[/\d/].to_i)-1
+  end
+  
+  def to_slug(input)
+    Slugalizer.slugalize(input['nome'])
   end
   
   extend self

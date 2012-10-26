@@ -1,5 +1,4 @@
 class FeirasController < ApplicationController
-
   def index
     if params[:lat] && params[:lng]
       @feiras = Feira.perto_de(params[:lat].to_f, params[:lng].to_f).page(params[:p])
@@ -14,12 +13,11 @@ class FeirasController < ApplicationController
   end
   
   def show
-    @feira = Feira.find(params[:id])
+    @feira = Feira.where({slug: params[:id]}).first 
     
     respond_to do |format|
       format.html
       format.json { render :json => @feira }
     end
   end
-  
 end
