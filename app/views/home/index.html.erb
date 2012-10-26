@@ -1,0 +1,130 @@
+<div class="span9">
+    <h2>Descubra as boas feiras livres perto de você!</h2>
+    
+    <input type="text" name="query" id="searchquery"> <button class="btn" id="search-btn" onclick="search_address()">Buscar</button>
+    
+    <style type="text/css">
+      #map_canvas { height: 500px }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjCBCUCosKpGu_aV_2ojZfljmP-ZeokkQ&sensor=true">
+    </script>
+    <script type="text/javascript">
+      var map = null;
+      function initializeMap() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-23.548943,-46.638818),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+
+        // if(navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(function(position) {
+        //         var pos = new google.maps.LatLng(position.coords.latitude,
+        //                                                position.coords.longitude);
+        //         console.log("com location");
+        //         var infowindow = new google.maps.InfoWindow({
+        //              map: map,
+        //              position: pos,
+        //              content: 'Location found using HTML5.'
+        //          });
+        // 
+        //         map.setCenter(pos);
+        //     }, function() {
+        //           handleNoGeolocation(true);
+        //     });
+        // } else {
+        //       console.log("sem location tb");
+        //     // Browser doesn't support Geolocation
+        //     handleNoGeolocation(false);
+        //   
+        // }
+        // 
+        // function handleNoGeolocation(errorFlag) {
+        //     console.log("sem location");
+        //   var options = {
+        //     map: map,
+        //     position: new google.maps.LatLng(-23.548943,-46.638818),
+        //   };
+        // 
+        //   map.setCenter(options.position);
+        //  }
+        
+        
+        
+        
+     }
+      
+     function search_address() {
+         var address = $("#searchquery")[0].value;
+         geocoder = new google.maps.Geocoder();
+         geocoder.geocode( { 'address': address }, function(results, status) {
+              
+               if (status == google.maps.GeocoderStatus.OK) {
+                 map.setCenter(results[0].geometry.location);
+                 var marker = new google.maps.Marker({
+                     map: map,
+                     position: results[0].geometry.location
+                 });
+                 
+                 $.getJSON('/feiras.json?lat='+results[0].geometry.location.Ya+'&lng='+results[0].geometry.location.Za, function(data) {
+                     console.log(data);
+                     var items = [];
+                    
+                     $.each(data, function(key, val) {
+                         var infowindow = new google.maps.InfoWindow({
+                             content: '<h3><a href="/feiras/'+val["_id"]+'">'+val["nome"]+'</a></h3><ul><li>'+val["endereco"]+'</li><li>'+val["bairro"]+'</li><li>Barracas: '+val["barracas"]+'</li><li>Metragem: '+val["metragem"]+'</li></ul>'
+                         });
+
+                         pos = new google.maps.LatLng(val["loc"][0],val["loc"][1]);
+                         
+                         var marker = new google.maps.Marker({
+                             position: pos,
+                             map: map,
+                             title: val["nome"]
+                         });
+
+                         google.maps.event.addListener(marker, 'click', function() {
+                           infowindow.open(map,marker);
+                     });
+                   });
+                   // 
+                   // $('<ul/>', {
+                   //   'class': 'my-new-list',
+                   //   html: items.join('')
+                   // }).appendTo('body');
+                   
+                   
+                   // _id: "508ac1772647a2342900030b"
+                   // bairro: "Jd Vl Mariana"
+                   // barracas: 25
+                   // categoria: "T"
+                   // created_at: "2012-10-26T16:59:35Z"
+                   // endereco: "Rua Voltaire, S/N"
+                   // loc: Array[2]
+                   // metragem: 166
+                   // nome: "Chacara Klabim"
+                   // numero: 31453
+                   // subprefeitura: "VM"
+                   // updated_at: "2012-10-26T16:59:35Z"
+                   // __proto__: Object
+                 });
+                 
+                 
+               } else {
+                 console.log("Geocode was not successful for the following reason: " + status);
+               }
+             });
+             
+             
+             
+     }
+      
+    </script>
+    
+    <div id="map_canvas"></div>
+</div>
+
+
+

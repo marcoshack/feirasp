@@ -1,0 +1,26 @@
+= Feiras Livres de São Paulo - Hackathon 2012
+
+== O que é?
+
+É um projeto desenvolvido durante o Hackathon 2012 para localização de feiras livres em São Paulo.
+
+== Fontes
+
+* http://www9.prefeitura.sp.gov.br/secretarias/smsp/pesquisa/feiras/plugins/feiras.xml
+
+* http://www9.prefeitura.sp.gov.br/secretarias/smsp/pesquisa/feiras/plugins/local.xml
+
+<numero> - identificação da feira no sistema da prefeitura. O primeiro dígito é a informação do dia da semana que acontece, começando em domingo. 1=domingo,2=segunda,3=terça,4=quarta,5=quinta,6=sexta,7=sábado
+
+== Onde tá?
+
+* Github: https://github.com/marcoshack/feirasp
+* Site: http://feiras.herokuapp.com
+
+== Quem fez?
+
+* Luis Cipriani
+* Luiz Rocha
+* Marcos Hack
+* Tino Gomes (mentira)
+* Farofa (PO)
