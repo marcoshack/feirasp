@@ -75,7 +75,7 @@
                     
                      $.each(data, function(key, val) {
                          var infowindow = new google.maps.InfoWindow({
-                             content: '<h3><a href="/feiras/'+val["_id"]+'">'+val["nome"]+'</a></h3><ul><li>'+val["endereco"]+'</li><li>'+val["bairro"]+'</li><li>Barracas: '+val["barracas"]+'</li><li>Metragem: '+val["metragem"]+'</li></ul>'
+                             content: '<h3><a href="/feiras/'+val["slug"]+'">'+val["nome"]+'</a></h3><ul><li>'+val["endereco"]+'</li><li>'+val["bairro"]+'</li><li>Barracas: '+val["barracas"]+'</li><li>Metragem: '+val["metragem"]+'</li></ul>'
                          });
 
                          pos = new google.maps.LatLng(val["loc"][0],val["loc"][1]);

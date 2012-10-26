@@ -12,8 +12,10 @@ class Feira
   field :metragem     , type: Integer # <metragem>
   field :barracas     , type: Integer # <feirantes>
   field :dia_da_semana, type: Integer # Date.wday
+  field :slug         , type: String
   
   index({ loc: "2d" })
+  index({ slug: 1 }, {unique: true, name: "slug_index" })
   
   scope :perto_de, ->(lat, lng, distance = 5) { 
     where( loc: { "$near" => [lat, lng], "$maxDistance" => distance}) 
@@ -28,4 +30,8 @@ class Feira
     self.loc.last
   end
   alias_method :long, :longitude
+  
+  def to_param
+    self.slug
+  end
 end
