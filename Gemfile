@@ -5,6 +5,7 @@ gem 'twitter-bootstrap-rails'
 gem 'mongoid'
 gem 'mongoid_spacial'
 gem 'jquery-rails'
+gem 'kaminari'
 
 group :development do
   gem 'awesome_print'
