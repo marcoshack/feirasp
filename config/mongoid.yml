@@ -70,7 +70,12 @@ test:
 production:
   sessions:
     default:
-      uri: <%= ENV['MONGOLAB_URI'] %>
+      # uri: <%= ENV['MONGOLAB_URI'] %>
+      database: heroku_app8749860
+      username: heroku_app8749860
+      password: 5b77n1p144mb8gvli0eh9vk75o
+      hosts:
+        - ds041327.mongolab.com:41327
       options:
         consistency: :strong
       
