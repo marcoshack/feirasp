@@ -1,7 +1,7 @@
 <% content_for :head do %>
 	<meta property="og:title" content="Feira Livre de <%= @feira.nome %>"/>
 	<meta property="og:type" content="restaurant"/>
-	<meta property="og:url" content="<%= feiras_url(@feira) %>"/>
+	<meta property="og:url" content="<%= feira_url(@feira) %>"/>
 	<meta property="og:site_name" content="Social Feira"/>
 	<meta property="og:latitude" content="<%= @feira.latitude %>"/>
 	<meta property="og:longitude" content="<%= @feira.longitude %>"/>
@@ -14,7 +14,7 @@
 <div id="fb-root">
 	<div class="span9">
 		<h2><%= @feira.nome %></h2>
-		<div class="fb-like" data-href="<%= feiras_url(@feira) %>" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>
+		<div class="fb-like" data-href="<%= feira_url(@feira) %>" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>
 
 		<ul id='dados-da-feira'>
 		    <li><span>Acontece às <%= nome_dia_da_semana(@feira) %></li>
@@ -26,7 +26,7 @@
 	</div>
 </div>
 
-<div class="fb-comments" data-href="<%= feiras_url(@feira) %>" data-num-posts="10" data-width="470"></div>
+<div class="fb-comments" data-href="<%= feira_url(@feira) %>" data-num-posts="10" data-width="470"></div>
 
 
 <% content_for :javascript do %>
