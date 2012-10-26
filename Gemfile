@@ -3,7 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'twitter-bootstrap-rails'
 gem 'mongoid'
+gem 'mongoid_spacial'
 gem 'jquery-rails'
+gem 'kaminari'
 
 group :development do
   gem 'awesome_print'
