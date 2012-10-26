@@ -67,6 +67,7 @@
                      map: map,
                      position: results[0].geometry.location
                  });
+
                  
                  $.getJSON('/feiras.json?lat='+results[0].geometry.location.Ya+'&lng='+results[0].geometry.location.Za, function(data) {
                      console.log(data);
@@ -110,8 +111,7 @@
                    // updated_at: "2012-10-26T16:59:35Z"
                    // __proto__: Object
                  });
-                 
-                 
+
                } else {
                  console.log("Geocode was not successful for the following reason: " + status);
                }
@@ -125,6 +125,7 @@
     
     <div id="map_canvas"></div>
 </div>
+
 
 
 
