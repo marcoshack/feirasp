@@ -2,7 +2,7 @@ class FeirasController < ApplicationController
 
   def index
     if params[:lat] && params[:lng]
-      @feiras = Feira.perto_de(params[:lat], params[:lng]).page(params[:p])
+      @feiras = Feira.perto_de(params[:lat].to_f, params[:lng].to_f).page(params[:p])
     else
       @feiras = Feira.page(params[:p])
     end
