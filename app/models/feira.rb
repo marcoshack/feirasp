@@ -23,4 +23,7 @@ class Feira
   field :metragem     , type: Integer # <metragem>
   field :barracas     , type: Integer # <feirantes>
   
+  index({ loc: "2d" })
+  
+  scope :perto_de, ->(lat, lng) { where(loc: { "$near" => [lat, lng]}) }
 end
