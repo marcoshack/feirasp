@@ -1,9 +1,40 @@
-<div class="span9">
-	<h2><%= @feira.nome %></h2>
-	<ul id='dados-da-feira'>
-		<li><span>Endereço:</span> <%= @feira.endereco %></li>
-		<li><span>Bairro:</span> <%= @feira.bairro %></li>
-		<li><span>Metragem:</span> <%= @feira.metragem %></li>
-		<li><span>Feirantes:</span> <%= @feira.barracas %></li>
-	</ul>
+<% content_for :head do %>
+	<meta property="og:title" content="Feira Livre de <%= @feira.nome %>"/>
+	<meta property="og:type" content="restaurant"/>
+	<meta property="og:url" content="<%= feiras_url(@feira) %>"/>
+	<meta property="og:site_name" content="Social Feira"/>
+	<meta property="og:latitude" content="<%= @feira.latitude %>"/>
+	<meta property="og:longitude" content="<%= @feira.longitude %>"/>
+	<meta property="og:street-address" content="<%= @feira.endereco %>"/>
+	<meta property="og:locality" content="<%= @feira.bairro %>"/>
+	<meta property="og:region" content="SP"/>
+	<meta property="og:country-name" content="Brasil"/>
+<% end %>
+
+<div id="fb-root">
+	<div class="span9">
+		<h2><%= @feira.nome %></h2>
+		<div class="fb-like" data-href="<%= feiras_url(@feira) %>" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>
+
+		<ul id='dados-da-feira'>
+			<li><span>Endereço:</span> <%= @feira.endereco %></li>
+			<li><span>Bairro:</span> <%= @feira.bairro %></li>
+			<li><span>Metragem:</span> <%= @feira.metragem %></li>
+			<li><span>Feirantes:</span> <%= @feira.barracas %></li>
+		</ul>
+	</div>
 </div>
+
+<div class="fb-comments" data-href="<%= feiras_url(@feira) %>" data-num-posts="10" data-width="470"></div>
+
+
+<% content_for :javascript do %>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<% end %>
+

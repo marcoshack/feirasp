@@ -41,6 +41,8 @@ class Feira
       '7' => :sab
     }
     weekday[self.numero.to_s[/\d/]]
+  end
+  
   def latitude
     self.loc.first
   end
