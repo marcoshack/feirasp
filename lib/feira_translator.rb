@@ -11,15 +11,19 @@ module FeiraTranslator
       :endereco      => input['logadouro'].titleize,
       :loc           => to_geo(input),
       :metragem      => input['metragem'].to_i,
-      :barracas      => input['feirantes'].to_i
+      :barracas      => input['feirantes'].to_i,
+      :dia_da_semana => to_weekday(input)
     }
     
-    # ap translated
     Feira.create(translated)
   end
   
   def to_geo(input)
     [input['latitude'].to_f, input['longitude'].to_f]
+  end
+  
+  def to_weekday(input)
+    input['numero'].to_s[/\d/].to_i
   end
   
   extend self

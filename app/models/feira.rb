@@ -22,6 +22,7 @@ class Feira
   field :loc          , type: Array   # [ <latitude>, <longitude> ]
   field :metragem     , type: Integer # <metragem>
   field :barracas     , type: Integer # <feirantes>
+  field :dia_da_semana, type: Integer # Date.wday
   
   index({ loc: "2d" })
   
