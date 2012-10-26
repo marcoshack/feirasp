@@ -1,12 +1,90 @@
 <div class="span9">
     <h2>Descubra as boas feiras livres perto de você!</h2>
+    
+    <input type="text" name="query" id="searchquery"> <button class="btn" id="search-btn" onclick="search_address()">Buscar</button>
+    
+    <style type="text/css">
+      #map_canvas { height: 500px }
+    </style>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjCBCUCosKpGu_aV_2ojZfljmP-ZeokkQ&sensor=true">
+    </script>
+    <script type="text/javascript">
+      var map = null;
+      function initializeMap() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-23.548943,-46.638818),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map_canvas"),mapOptions);
+
+        // if(navigator.geolocation) {
+        //     navigator.geolocation.getCurrentPosition(function(position) {
+        //         var pos = new google.maps.LatLng(position.coords.latitude,
+        //                                                position.coords.longitude);
+        //         console.log("com location");
+        //         var infowindow = new google.maps.InfoWindow({
+        //              map: map,
+        //              position: pos,
+        //              content: 'Location found using HTML5.'
+        //          });
+        // 
+        //         map.setCenter(pos);
+        //     }, function() {
+        //           handleNoGeolocation(true);
+        //     });
+        // } else {
+        //       console.log("sem location tb");
+        //     // Browser doesn't support Geolocation
+        //     handleNoGeolocation(false);
+        //   
+        // }
+        // 
+        // function handleNoGeolocation(errorFlag) {
+        //     console.log("sem location");
+        //   var options = {
+        //     map: map,
+        //     position: new google.maps.LatLng(-23.548943,-46.638818),
+        //   };
+        // 
+        //   map.setCenter(options.position);
+        //  }
+        
+        
+        
+        
+     }
+      
+     function search_address() {
+         var address = $("#searchquery")[0].value;
+         geocoder = new google.maps.Geocoder();
+         geocoder.geocode( { 'address': address }, function(results, status) {
+              
+               if (status == google.maps.GeocoderStatus.OK) {
+                 map.setCenter(results[0].geometry.location);
+                 var marker = new google.maps.Marker({
+                     map: map,
+                     position: results[0].geometry.location
+                 });
+               } else {
+                 console.log("Geocode was not successful for the following reason: " + status);
+               }
+             });
+             
+             
+             
+     }
+      
+    </script>
+    
+    <div id="map_canvas"></div>
 </div>
 <div class="span3">
   <div class="well sidebar-nav">
     <ul class="nav nav-list">
-      <li class="nav-header">Sidebar</li>
-      <li>Feira 1</li>
-      <li>Feira 2</li>
+      <li class="nav-header">Feiras mais próximas de você:</li>
+      <li>Faça uma busca...</li>
     </ul>
   </div><!--/.well -->
 </div><!--/span-->
