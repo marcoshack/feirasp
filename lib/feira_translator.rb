@@ -23,7 +23,7 @@ module FeiraTranslator
   end
   
   def to_weekday(input)
-    input['numero'].to_s[/\d/].to_i
+    (input['numero'].to_s[/\d/].to_i)-1
   end
   
   extend self
