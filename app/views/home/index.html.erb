@@ -67,6 +67,51 @@
                      map: map,
                      position: results[0].geometry.location
                  });
+
+                 
+                 $.getJSON('/feiras.json?lat='+results[0].geometry.location.Ya+'&lng='+results[0].geometry.location.Za, function(data) {
+                     console.log(data);
+                     var items = [];
+                    
+                     $.each(data, function(key, val) {
+                         var infowindow = new google.maps.InfoWindow({
+                             content: '<h3><a href="/feiras/'+val["_id"]+'">'+val["nome"]+'</a></h3><ul><li>'+val["endereco"]+'</li><li>'+val["bairro"]+'</li><li>Barracas: '+val["barracas"]+'</li><li>Metragem: '+val["metragem"]+'</li></ul>'
+                         });
+
+                         pos = new google.maps.LatLng(val["loc"][0],val["loc"][1]);
+                         
+                         var marker = new google.maps.Marker({
+                             position: pos,
+                             map: map,
+                             title: val["nome"]
+                         });
+
+                         google.maps.event.addListener(marker, 'click', function() {
+                           infowindow.open(map,marker);
+                     });
+                   });
+                   // 
+                   // $('<ul/>', {
+                   //   'class': 'my-new-list',
+                   //   html: items.join('')
+                   // }).appendTo('body');
+                   
+                   
+                   // _id: "508ac1772647a2342900030b"
+                   // bairro: "Jd Vl Mariana"
+                   // barracas: 25
+                   // categoria: "T"
+                   // created_at: "2012-10-26T16:59:35Z"
+                   // endereco: "Rua Voltaire, S/N"
+                   // loc: Array[2]
+                   // metragem: 166
+                   // nome: "Chacara Klabim"
+                   // numero: 31453
+                   // subprefeitura: "VM"
+                   // updated_at: "2012-10-26T16:59:35Z"
+                   // __proto__: Object
+                 });
+
                } else {
                  console.log("Geocode was not successful for the following reason: " + status);
                }
@@ -80,14 +125,7 @@
     
     <div id="map_canvas"></div>
 </div>
-<div class="span3">
-  <div class="well sidebar-nav">
-    <ul class="nav nav-list">
-      <li class="nav-header">Feiras mais próximas de você:</li>
-      <li>Faça uma busca...</li>
-    </ul>
-  </div><!--/.well -->
-</div><!--/span-->
+
 
 
 
