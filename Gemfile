@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-gem "twitter-bootstrap-rails"
-gem "mongoid"
+gem 'twitter-bootstrap-rails'
+gem 'mongoid'
+gem 'jquery-rails'
+
+group :development do
+  gem 'awesome_print'
+end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -14,4 +19,3 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
