@@ -39,6 +39,6 @@ class Feira
       '6' => :sex,
       '7' => :sab
     }
-    weekday[self.numero.to_s.split('').first]
+    weekday[self.numero.to_s[/\d/]]
   end
 end
