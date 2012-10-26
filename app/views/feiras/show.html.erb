@@ -17,6 +17,7 @@
 		<div class="fb-like" data-href="<%= feiras_url(@feira) %>" data-send="true" data-width="450" data-show-faces="true" data-font="verdana"></div>
 
 		<ul id='dados-da-feira'>
+		    <li><span>Acontece às <%= nome_dia_da_semana(@feira) %></li>
 			<li><span>Endereço:</span> <%= @feira.endereco %></li>
 			<li><span>Bairro:</span> <%= @feira.bairro %></li>
 			<li><span>Metragem:</span> <%= @feira.metragem %></li>
