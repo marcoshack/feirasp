@@ -25,5 +25,7 @@ class Feira
   
   index({ loc: "2d" })
   
-  scope :perto_de, ->(lat, lng) { where(loc: { "$near" => [lat, lng]}) }
+  scope :perto_de, ->(lat, lng, distance = 5) { 
+    where( loc: { "$near" => [lat, lng], "$maxDistance" => distance}) 
+  }
 end

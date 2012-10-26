@@ -1,6 +1,11 @@
 class FeirasController < ApplicationController
-  def search
-    @feiras = Feira.perto_de(params[:lat], params[:lng]).page(params[:p])
+
+  def index
+    if params[:lat] && params[:lng]
+      @feiras = Feira.perto_de(params[:lat], params[:lng]).page(params[:p])
+    else
+      @feiras = Feira.page(params[:p])
+    end
     
     respond_to do |format|
       format.html
@@ -17,12 +22,4 @@ class FeirasController < ApplicationController
     end
   end
   
-  def index
-    @feiras = Feira.page(params[:p])
-    
-    respond_to do |format|
-      format.html
-      format.json { render :json => @feiras }
-    end
-  end
 end
