@@ -14,7 +14,7 @@ class FeirasController < ApplicationController
   end
   
   def show
-    @feira = Feira.find_by_id(param[:id])
+    @feira = Feira.find(params[:id])
     
     respond_to do |format|
       format.html
