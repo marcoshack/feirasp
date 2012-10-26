@@ -23,6 +23,9 @@ module FeiraTranslator
   end
   
   def to_weekday(input)
+    # identificação da feira no sistema da prefeitura.
+    # primeiro dígito é a informação do dia da semana que acontece, começando em domingo. 
+    # 1=domingo,2=segunda,3=terça,4=quarta,5=quinta,6=sexta,7=sábado
     (input['numero'].to_s[/\d/].to_i)-1
   end
   
