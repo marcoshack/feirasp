@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Feira::Application.load_tasks
+FeiraSP::Application.load_tasks
