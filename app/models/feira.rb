@@ -29,20 +29,7 @@ class Feira
   scope :perto_de, ->(lat, lng, distance = 5) { 
     where( loc: { "$near" => [lat, lng], "$maxDistance" => distance}) 
   }
-  
-  def dia_da_semana
-    weekday = {
-      '1' => :dom,
-      '2' => :seg,
-      '3' => :ter,
-      '4' => :qua,
-      '5' => :qui,
-      '6' => :sex,
-      '7' => :sab
-    }
-    weekday[self.numero.to_s[/\d/]]
-  end
-  
+
   def latitude
     self.loc.first
   end
@@ -50,5 +37,4 @@ class Feira
   def longitude
     self.loc.last
   end
-  
 end
