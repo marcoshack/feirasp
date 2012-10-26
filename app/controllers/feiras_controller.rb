@@ -8,7 +8,7 @@ class FeirasController < ApplicationController
     end
     
     respond_to do |format|
-      format.html
+      format.html { redirect_to :format => 'json' }
       format.json { render :json => @feiras }
     end
   end

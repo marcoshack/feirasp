@@ -1,6 +1,6 @@
 FeiraSP::Application.routes.draw do
   
-  resources :feiras
+  resources :feiras, :only => [:index, :show]
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
